@@ -18,6 +18,9 @@ namespace MiddleClickDefinition.Shared.Options
         public CommandSetting CtrlMiddleClick()
             => GetCommandSetting("CtrlMiddleClickSetting");
 
+        public CommandSetting CtrlAltMiddleClick()
+            => GetCommandSetting("CtrlAltMiddleClickSetting");
+
         public CommandSetting ShiftMiddleClick()
             => GetCommandSetting("ShiftMiddleClickSetting");
 

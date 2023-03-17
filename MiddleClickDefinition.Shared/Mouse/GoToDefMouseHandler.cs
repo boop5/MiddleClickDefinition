@@ -51,7 +51,7 @@ namespace MiddleClickDefinition.Shared.Mouse
 
         public override void PreprocessMouseUp(MouseButtonEventArgs e)
         {
-            if (e.ChangedButton.ToString().Equals("Middle") && _mouseDownAnchorPoint.HasValue)
+            if (e.ChangedButton.ToString().Equals("Left") && _mouseDownAnchorPoint.HasValue)
             {
                 var currentMousePosition = RelativeToView(e.GetPosition(_view.VisualElement));
 
@@ -66,6 +66,9 @@ namespace MiddleClickDefinition.Shared.Mouse
                                 break;
                             case ModifierKeyState.Ctrl:
                                 DispatchCommand(_options.CtrlMiddleClick());
+                                break;
+                            case ModifierKeyState.CtrlAlt:
+                                DispatchCommand(_options.CtrlAltMiddleClick());
                                 break;
                             case ModifierKeyState.Shift:
                                 DispatchCommand(_options.ShiftMiddleClick());
@@ -86,11 +89,11 @@ namespace MiddleClickDefinition.Shared.Mouse
             _mouseDownAnchorPoint = null;
         }
 
-        public override void PreprocessMouseDown(MouseButtonEventArgs e)
+        public override void PreprocessMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             MouseButton button = e.ChangedButton;
 
-            if (button.ToString().Equals("Middle"))
+            if (button.ToString().Equals("Left"))
             {
                 var position = RelativeToView(e.GetPosition(_view.VisualElement));
                 var line = _view.TextViewLines.GetTextViewLineContainingYCoordinate(position.Y);
@@ -143,6 +146,7 @@ namespace MiddleClickDefinition.Shared.Mouse
                     var name = classification.ClassificationType.Classification.ToLower();
                     if (name.Contains("identifier")
                         || name.Contains("user types")
+                        || name.Contains("method name")
                         || (name.Contains("keyword")
                             && IsAppropriateKeyword(classification.Span.GetText())
                             && _view.TextBuffer.ContentType.IsOfType("csharp"))

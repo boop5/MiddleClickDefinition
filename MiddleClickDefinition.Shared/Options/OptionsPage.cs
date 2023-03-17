@@ -23,6 +23,12 @@ namespace MiddleClickDefinition.Shared.Options
         public CommandSetting CtrlMiddleClickSetting { get; set; } = CommandSetting.GoToImplementation;
 
         [Category(MiddleclickActionsCategory)]
+        [DisplayName("Ctrl-Alt-Middleclick")]
+        [Description("Controls which action is called for Ctrl-Alt-Middleclick")]
+        [TypeConverter(typeof(EnumTypeConverter))]
+        public CommandSetting CtrlAltMiddleClickSetting { get; set; } = CommandSetting.GoToImplementation;
+
+        [Category(MiddleclickActionsCategory)]
         [DisplayName("Shift-Middleclick")]
         [Description("Controls which action is called for Shift-Middleclick")]
         [TypeConverter(typeof(EnumTypeConverter))]

@@ -6,6 +6,7 @@ namespace MiddleClickDefinition.Shared.Keys
         None,
         Shift,
         Ctrl,
+        CtrlAlt,
         CtrlShift
     }
 }
